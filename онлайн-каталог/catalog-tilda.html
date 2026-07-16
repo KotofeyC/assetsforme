@@ -1697,7 +1697,9 @@ body.tilda-embed{overflow:hidden;}
     });
     const c = config[brand];
     products = RAW[brand].map(row => normalize(row,brand));
-    history.replaceState(null,"",`${location.pathname}?brand=${brand}`);
+    if(location.protocol!=="about:"){
+      try{history.replaceState(null,"",`${location.pathname}?brand=${brand}`);}catch(_error){}
+    }
     renderBook(); renderMobile(); renderSearch(); updateComparisonBar();
   }
 
